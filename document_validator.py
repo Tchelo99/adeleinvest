@@ -26,31 +26,41 @@ class DocumentValidator:
         
         try:
             if file_extension in ['.jpg', '.jpeg', '.png']:
-                image = Image.open(uploaded_file)
+                # For images, read bytes directly
+                image_bytes = uploaded_file.read()
+                image = Image.open(io.BytesIO(image_bytes))
+                # Reset file pointer for potential reuse
+                uploaded_file.seek(0)
                 text = pytesseract.image_to_string(image, lang='fra')
+                
             elif file_extension == '.pdf':
-                # Create a temporary file to save the uploaded PDF
+                # Save PDF content to a temporary file
                 with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
-                    tmp_file.write(uploaded_file.getvalue())
-                    pdf_path = tmp_file.name
+                    tmp_file.write(uploaded_file.getbuffer())
+                    tmp_path = tmp_file.name
                 
                 try:
                     # Convert PDF to images
-                    pages = convert_from_path(pdf_path)
+                    pages = convert_from_path(tmp_path)
                     text = ""
                     for page in pages:
                         text += pytesseract.image_to_string(page, lang='fra')
                 finally:
-                    # Clean up the temporary file
-                    os.unlink(pdf_path)
+                    # Clean up temporary file
+                    if os.path.exists(tmp_path):
+                        os.unlink(tmp_path)
                 
             elif file_extension == '.docx':
-                # For docx files, we need to read the bytes
-                text = docx2txt.process(io.BytesIO(uploaded_file.getvalue()))
+                # For docx files, read bytes directly
+                docx_bytes = uploaded_file.read()
+                uploaded_file.seek(0)  # Reset file pointer
+                text = docx2txt.process(io.BytesIO(docx_bytes))
+                
             else:
                 raise ValueError(f"Unsupported file format: {file_extension}")
                 
             return text.lower()
+            
         except Exception as e:
             raise Exception(f"Error processing file: {str(e)}")
 
