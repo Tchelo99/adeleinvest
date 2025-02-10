@@ -107,42 +107,18 @@ class DocumentValidator:
             # Check for keywords with more flexible matching
             found_keywords = []
             for keyword in keywords:
-                # Convert both to lower case and normalize
+                # Convert both to lower case
                 keyword_lower = keyword.lower()
+                # Remove accents for comparison
                 keyword_normalized = self._normalize_text(keyword_lower)
                 text_normalized = self._normalize_text(extracted_text)
                 
-                # Create variations of the keyword
-                keyword_variations = [
-                    keyword_lower,
-                    keyword_normalized,
-                    keyword_lower.replace(' ', ''),
-                    keyword_lower.replace('-', ''),
-                    keyword_lower.replace('é', 'e'),
-                    keyword_lower.replace('è', 'e'),
-                    keyword_lower.replace('à', 'a'),
-                    'k-bis',
-                    'kbis',
-                    'k bis',
-                    'extrait k bis',
-                    'registre',
-                    'commerce',
-                    'societes',
-                    'sociétés',
-                    'rcs',
-                    'immatriculation'
-                ] if document_type == "K-bis de la société propriétaire" else [
-                    keyword_lower,
-                    keyword_normalized,
-                    keyword_lower.replace(' ', ''),
-                    keyword_lower.replace('-', '')
-                ]
-                
-                # Check all variations
-                for variation in keyword_variations:
-                    if variation in text_normalized:
-                        found_keywords.append(keyword)
-                        break
+                # Try different variations of the keyword
+                if (keyword_lower in extracted_text or 
+                    keyword_normalized in text_normalized or
+                    keyword_lower.replace(' ', '') in extracted_text.replace(' ', '') or
+                    keyword_lower.replace('-', '') in extracted_text.replace('-', '')):
+                    found_keywords.append(keyword)
             
             # Document is valid if at least one keyword is found
             is_valid = len(found_keywords) > 0
@@ -155,7 +131,7 @@ class DocumentValidator:
                 "document_type": document_type,
                 "is_valid": is_valid,
                 "found_keywords": found_keywords,
-                "extracted_text": extracted_text  # For debugging
+                "extracted_text": extracted_text  # Optional: for debugging
             }
             
             # Save to history
