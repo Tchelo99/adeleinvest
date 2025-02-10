@@ -31,7 +31,8 @@ class DocumentValidator:
                 image = Image.open(io.BytesIO(image_bytes))
                 # Reset file pointer for potential reuse
                 uploaded_file.seek(0)
-                text = pytesseract.image_to_string(image, lang='fra')
+                # Try multiple languages
+                text = pytesseract.image_to_string(image, lang='fra+eng')
                 
             elif file_extension == '.pdf':
                 # Save PDF content to a temporary file
@@ -40,20 +41,29 @@ class DocumentValidator:
                     tmp_path = tmp_file.name
                 
                 try:
-                    # Convert PDF to images
-                    pages = convert_from_path(tmp_path)
+                    # Convert PDF to images with higher DPI
+                    pages = convert_from_path(
+                        tmp_path,
+                        dpi=300,  # Higher DPI for better quality
+                        grayscale=True,  # Convert to grayscale for better OCR
+                    )
                     text = ""
                     for page in pages:
-                        text += pytesseract.image_to_string(page, lang='fra')
+                        # Enhance image before OCR
+                        page = self._enhance_image(page)
+                        # Try multiple languages
+                        text += pytesseract.image_to_string(
+                            page,
+                            lang='fra+eng',  # Use both French and English
+                            config='--psm 1 --oem 3'  # Use more accurate OCR mode
+                        )
                 finally:
-                    # Clean up temporary file
                     if os.path.exists(tmp_path):
                         os.unlink(tmp_path)
                 
             elif file_extension == '.docx':
-                # For docx files, read bytes directly
                 docx_bytes = uploaded_file.read()
-                uploaded_file.seek(0)  # Reset file pointer
+                uploaded_file.seek(0)
                 text = docx2txt.process(io.BytesIO(docx_bytes))
                 
             else:
@@ -64,6 +74,20 @@ class DocumentValidator:
         except Exception as e:
             raise Exception(f"Error processing file: {str(e)}")
 
+    def _enhance_image(self, image):
+        """Enhance image quality for better OCR results."""
+        # Convert to grayscale if not already
+        if image.mode != 'L':
+            image = image.convert('L')
+        
+        # Increase contrast
+        from PIL import ImageEnhance
+        enhancer = ImageEnhance.Contrast(image)
+        image = enhancer.enhance(2.0)
+        
+        # Optional: Add more image processing here if needed
+        return image
+
     def validate_document(self, uploaded_file, real_estate_type, document_type):
         try:
             # Extract text from document
@@ -72,10 +96,20 @@ class DocumentValidator:
             # Get keywords for document type
             keywords = self.config.get_keywords_for_document(real_estate_type, document_type)
             
-            # Check for keywords - document is valid if at least one keyword is found
+            # Check for keywords with more flexible matching
             found_keywords = []
             for keyword in keywords:
-                if keyword.lower() in extracted_text:
+                # Convert both to lower case
+                keyword_lower = keyword.lower()
+                # Remove accents for comparison
+                keyword_normalized = self._normalize_text(keyword_lower)
+                text_normalized = self._normalize_text(extracted_text)
+                
+                # Try different variations of the keyword
+                if (keyword_lower in extracted_text or 
+                    keyword_normalized in text_normalized or
+                    keyword_lower.replace(' ', '') in extracted_text.replace(' ', '') or
+                    keyword_lower.replace('-', '') in extracted_text.replace('-', '')):
                     found_keywords.append(keyword)
             
             # Document is valid if at least one keyword is found
@@ -88,7 +122,8 @@ class DocumentValidator:
                 "real_estate_type": real_estate_type,
                 "document_type": document_type,
                 "is_valid": is_valid,
-                "found_keywords": found_keywords
+                "found_keywords": found_keywords,
+                "extracted_text": extracted_text  # Optional: for debugging
             }
             
             # Save to history
@@ -98,6 +133,14 @@ class DocumentValidator:
             
         except Exception as e:
             return {"error": str(e)}
+
+    def _normalize_text(self, text):
+        """Remove accents and special characters for more flexible matching."""
+        import unicodedata
+        return ''.join(
+            c for c in unicodedata.normalize('NFD', text)
+            if unicodedata.category(c) != 'Mn'
+        )
 
     def save_validation_result(self, result):
         try:
