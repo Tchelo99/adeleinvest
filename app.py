@@ -65,13 +65,6 @@ def main():
                         st.write(f"✅ {keyword}")
                 else:
                     st.write("❌ No matching keywords found")
-                
-                # Show extracted text
-                st.subheader("Extracted Text")
-                if result.get("extracted_text"):
-                    st.text_area("", result["extracted_text"], height=300)
-                else:
-                    st.write("No text extracted")
 
     # Sidebar for history
     with st.sidebar:
