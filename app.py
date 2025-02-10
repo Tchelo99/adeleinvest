@@ -70,18 +70,25 @@ def main():
                 else:
                     st.error("Document Validation Failed ❌")
                 
-                # Show details
-                with st.expander("See Validation Details"):
-                    if result["found_keywords"]:
-                        st.write("Found Keywords:")
-                        for keyword in result["found_keywords"]:
-                            st.write(f"✅ {keyword}")
-                    else:
-                        st.write("❌ No matching keywords found")
-                    
-                    # Show extracted text for debugging
-                    with st.expander("Show Extracted Text"):
-                        st.text(result.get("extracted_text", "No text extracted"))
+                # Create two columns for details
+                col1, col2 = st.columns(2)
+                
+                # Show keywords in first column
+                with col1:
+                    with st.expander("Found Keywords"):
+                        if result["found_keywords"]:
+                            for keyword in result["found_keywords"]:
+                                st.write(f"✅ {keyword}")
+                        else:
+                            st.write("❌ No matching keywords found")
+                
+                # Show extracted text in second column
+                with col2:
+                    with st.expander("Extracted Text"):
+                        if result.get("extracted_text"):
+                            st.text_area("", result["extracted_text"], height=300)
+                        else:
+                            st.write("No text extracted")
 
     # Add configuration management section
     if st.sidebar.checkbox("Show Configuration Management"):
