@@ -41,11 +41,19 @@ class DocumentValidator:
                     tmp_path = tmp_file.name
                 
                 try:
+                    # Set poppler path based on environment
+                    if platform.system() == 'Windows':
+                        poppler_path = r'C:\Program Files\poppler-0.68.0\bin'
+                    else:
+                        # On Linux/Cloud, poppler is in the standard location
+                        poppler_path = '/usr/lib/x86_64-linux-gnu'
+
                     # Convert PDF to images with higher DPI
                     pages = convert_from_path(
                         tmp_path,
                         dpi=300,  # Higher DPI for better quality
                         grayscale=True,  # Convert to grayscale for better OCR
+                        poppler_path=poppler_path if platform.system() == 'Windows' else None
                     )
                     text = ""
                     for page in pages:
@@ -99,18 +107,42 @@ class DocumentValidator:
             # Check for keywords with more flexible matching
             found_keywords = []
             for keyword in keywords:
-                # Convert both to lower case
+                # Convert both to lower case and normalize
                 keyword_lower = keyword.lower()
-                # Remove accents for comparison
                 keyword_normalized = self._normalize_text(keyword_lower)
                 text_normalized = self._normalize_text(extracted_text)
                 
-                # Try different variations of the keyword
-                if (keyword_lower in extracted_text or 
-                    keyword_normalized in text_normalized or
-                    keyword_lower.replace(' ', '') in extracted_text.replace(' ', '') or
-                    keyword_lower.replace('-', '') in extracted_text.replace('-', '')):
-                    found_keywords.append(keyword)
+                # Create variations of the keyword
+                keyword_variations = [
+                    keyword_lower,
+                    keyword_normalized,
+                    keyword_lower.replace(' ', ''),
+                    keyword_lower.replace('-', ''),
+                    keyword_lower.replace('é', 'e'),
+                    keyword_lower.replace('è', 'e'),
+                    keyword_lower.replace('à', 'a'),
+                    'k-bis',
+                    'kbis',
+                    'k bis',
+                    'extrait k bis',
+                    'registre',
+                    'commerce',
+                    'societes',
+                    'sociétés',
+                    'rcs',
+                    'immatriculation'
+                ] if document_type == "K-bis de la société propriétaire" else [
+                    keyword_lower,
+                    keyword_normalized,
+                    keyword_lower.replace(' ', ''),
+                    keyword_lower.replace('-', '')
+                ]
+                
+                # Check all variations
+                for variation in keyword_variations:
+                    if variation in text_normalized:
+                        found_keywords.append(keyword)
+                        break
             
             # Document is valid if at least one keyword is found
             is_valid = len(found_keywords) > 0
@@ -123,7 +155,7 @@ class DocumentValidator:
                 "document_type": document_type,
                 "is_valid": is_valid,
                 "found_keywords": found_keywords,
-                "extracted_text": extracted_text  # Optional: for debugging
+                "extracted_text": extracted_text  # For debugging
             }
             
             # Save to history

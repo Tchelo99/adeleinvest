@@ -78,6 +78,10 @@ def main():
                             st.write(f"✅ {keyword}")
                     else:
                         st.write("❌ No matching keywords found")
+                    
+                    # Show extracted text for debugging
+                    with st.expander("Show Extracted Text"):
+                        st.text(result.get("extracted_text", "No text extracted"))
 
     # Add configuration management section
     if st.sidebar.checkbox("Show Configuration Management"):

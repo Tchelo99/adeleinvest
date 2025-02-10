@@ -30,7 +30,23 @@
                     "keywords": ["étude", "marché", "analyse", "performance", "commerciale"]
                 },
                 "K-bis de la société propriétaire": {
-                    "keywords": ["k-bis", "kbis", "société", "rcs", "siret", "siren", "immatriculation"]
+                    "keywords": [
+                        "k-bis",
+                        "kbis",
+                        "k bis",
+                        "extrait k bis",
+                        "registre du commerce",
+                        "rcs",
+                        "siret",
+                        "siren",
+                        "immatriculation",
+                        "societe",
+                        "société",
+                        "commerce",
+                        "greffe",
+                        "tribunal",
+                        "extrait"
+                    ]
                 },
                 "Liste des contrats en cours": {
                     "keywords": ["contrats", "fournisseurs", "sous-traitants", "prestataires"]
