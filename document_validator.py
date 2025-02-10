@@ -6,11 +6,14 @@ from PIL import Image
 from typing import List, Dict, Set
 import json
 from datetime import datetime
+import platform
 
 class DocumentValidator:
     def __init__(self, config):
-        # Set Tesseract path for Windows
-        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        # Set Tesseract path based on environment
+        if platform.system() == 'Windows':
+            pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        # On Linux/Cloud, Tesseract is installed in the standard location
         
         self.config = config
         self.history_file = "validation_history.json"
