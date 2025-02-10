@@ -77,27 +77,6 @@ def main():
                 st.write(f"Type: {result['real_estate_type']}")
                 st.write(f"Document: {result['document_type']}")
                 st.write(f"Status: {'✅ Valid' if result['is_valid'] else '❌ Invalid'}")
-        
-        # Configuration Management
-        st.title("Configuration")
-        if st.checkbox("Show Configuration Management"):
-            st.subheader("Add New Real Estate Type")
-            new_type = st.text_input("New Real Estate Type")
-            if st.button("Add Type") and new_type:
-                config.add_real_estate_type(new_type)
-                st.success(f"Added {new_type}")
-            
-            st.subheader("Add New Document Type")
-            selected_type = st.selectbox(
-                "Select Real Estate Type",
-                config.get_real_estate_types()
-            )
-            new_doc = st.text_input("New Document Name")
-            new_keywords = st.text_input("Keywords (comma-separated)")
-            if st.button("Add Document") and new_doc and new_keywords:
-                keywords_list = [k.strip() for k in new_keywords.split(",")]
-                config.add_document_type(selected_type, new_doc, keywords_list)
-                st.success(f"Added {new_doc} to {selected_type}")
 
 if __name__ == "__main__":
     main() 
