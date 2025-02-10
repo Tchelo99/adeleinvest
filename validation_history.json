@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": "2025-02-10T11:32:36.963689",
+    "filename": "kbis1.jpg",
+    "real_estate_type": "Hôtel",
+    "document_type": "K-bis de la société propriétaire",
+    "is_valid": false,
+    "validation_score": 0.14285714285714285,
+    "found_keywords": [
+      "kbis"
+    ],
+    "missing_keywords": [
+      "k-bis",
+      "société",
+      "rcs",
+      "siret",
+      "siren",
+      "immatriculation"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:34:42.988389",
+    "filename": "kbis1.jpg",
+    "real_estate_type": "Hôtel",
+    "document_type": "K-bis de la société propriétaire",
+    "is_valid": true,
+    "found_keywords": [
+      "kbis"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:34:55.935000",
+    "filename": "kbis.png",
+    "real_estate_type": "Hôtel",
+    "document_type": "K-bis de la société propriétaire",
+    "is_valid": true,
+    "found_keywords": [
+      "kbis",
+      "société",
+      "rcs",
+      "immatriculation"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:41:05.386933",
+    "filename": "hotel-fire-emergency-plan.png",
+    "real_estate_type": "Hôtel",
+    "document_type": "Plans de l'hôtel",
+    "is_valid": true,
+    "found_keywords": [
+      "plan"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:43:23.737724",
+    "filename": "Certificat-durbanisme-9-Copier-3-e1516291891788.jpg",
+    "real_estate_type": "Hôtel",
+    "document_type": "Certificat d'urbanisme",
+    "is_valid": true,
+    "found_keywords": [
+      "urbanisme"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:43:34.690137",
+    "filename": "Certificat-durbanisme-9-Copier-3-e1516291891788.jpg",
+    "real_estate_type": "Hôtel",
+    "document_type": "Certificat d'urbanisme",
+    "is_valid": true,
+    "found_keywords": [
+      "urbanisme"
+    ]
+  },
+  {
+    "timestamp": "2025-02-10T11:43:45.370033",
+    "filename": "Capture d’écran 2025-02-10 110555.png",
+    "real_estate_type": "Hôtel",
+    "document_type": "Certificat d'urbanisme",
+    "is_valid": false,
+    "found_keywords": []
+  },
+  {
+    "timestamp": "2025-02-10T11:47:56.803934",
+    "filename": "Certificat-durbanisme-9-Copier-3-e1516291891788.jpg",
+    "real_estate_type": "Hôtel",
+    "document_type": "Certificat d'urbanisme",
+    "is_valid": true,
+    "found_keywords": [
+      "urbanisme"
+    ]
+  }
+]

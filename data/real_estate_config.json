@@ -1,0 +1,416 @@
+{
+    "real_estate_types": {
+        "Hôtel": {
+            "documents": {
+                "Plans de l'hôtel": {
+                    "keywords": ["plan", "architecture", "dimensions", "hôtel", "bâtiment"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "certificats", "réglementation", "permis"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostics", "amiante", "énergie", "dpe", "plomb", "technique"]
+                },
+                "Historique des travaux réalisés": {
+                    "keywords": ["travaux", "rénovation", "audit énergétique", "historique"]
+                },
+                "Autorisation d'exploitation": {
+                    "keywords": ["licence", "hôtellerie", "restauration", "exploitation", "autorisation", "classement", "étoiles"]
+                },
+                "Liste des salariés et contrats de travail": {
+                    "keywords": ["salariés", "contrats", "travail", "employés", "personnel"]
+                },
+                "Liste des locataires et baux commerciaux": {
+                    "keywords": ["locataires", "bail", "commercial", "location"]
+                },
+                "Revenus d'exploitation détaillés": {
+                    "keywords": ["revenus", "exploitation", "chiffre d'affaires", "ca", "hébergement", "restauration"]
+                },
+                "Études de marché": {
+                    "keywords": ["étude", "marché", "analyse", "performance", "commerciale"]
+                },
+                "K-bis de la société propriétaire": {
+                    "keywords": ["k-bis", "kbis", "société", "rcs", "siret", "siren", "immatriculation"]
+                },
+                "Liste des contrats en cours": {
+                    "keywords": ["contrats", "fournisseurs", "sous-traitants", "prestataires"]
+                },
+                "Assurances et historique des sinistres": {
+                    "keywords": ["assurance", "sinistre", "couverture", "police"]
+                },
+                "Certificats de conformité": {
+                    "keywords": ["conformité", "sécurité", "incendie", "électricité", "accessibilité"]
+                },
+                "Pacte d'associés": {
+                    "keywords": ["pacte", "associés", "statuts", "société"]
+                },
+                "Liste des actifs détenus": {
+                    "keywords": ["actifs", "mobilier", "équipements", "inventaire"]
+                },
+                "Liste des dettes financières": {
+                    "keywords": ["dettes", "emprunts", "financier", "crédit"]
+                },
+                "Historique des déclarations fiscales": {
+                    "keywords": ["fiscal", "déclaration", "impôts", "taxes"]
+                },
+                "Rapport de gestion": {
+                    "keywords": ["rapport", "gestion", "bilan", "financier"]
+                },
+                "Autorisations administratives": {
+                    "keywords": ["autorisation", "administrative", "licence iv", "terrasse"]
+                }
+            }
+        },
+        "Terrain": {
+            "documents": {
+                "Plan cadastral": {
+                    "keywords": ["cadastre", "plan", "parcelle", "terrain"]
+                },
+                "Matrice cadastrale": {
+                    "keywords": ["matrice", "cadastrale", "parcelle", "propriété"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "certificat", "réglementation", "constructibilité"]
+                },
+                "Études de sol": {
+                    "keywords": ["géotechnique", "pollution", "sol", "étude"]
+                },
+                "Plan de bornage": {
+                    "keywords": ["bornage", "géomètre", "limites", "terrain"]
+                },
+                "Servitudes actives et passives": {
+                    "keywords": ["servitude", "passage", "droit", "usage"]
+                },
+                "Certificat de non-pollution": {
+                    "keywords": ["pollution", "environnement", "sol", "certificat"]
+                },
+                "Certificat d'absence de préemption": {
+                    "keywords": ["préemption", "droit", "vente", "certificat"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "technique", "obligatoire", "étude"]
+                }
+            }
+        },
+        "Immeuble d'habitation": {
+            "documents": {
+                "Plans de l'immeuble": {
+                    "keywords": ["plans", "architecture", "dimensions", "immeuble", "bâtiment"]
+                },
+                "Règlement de copropriété": {
+                    "keywords": ["règlement", "copropriété", "division", "lots", "parties communes"]
+                },
+                "Liste des lots": {
+                    "keywords": ["lots", "affectation", "copropriété", "tantièmes", "millièmes"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "location", "loyer", "occupation"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "locatif", "rentabilité"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "plomb", "technique", "énergétique"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "entretien", "maintenance", "réparation"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "certificat", "règlement", "construction", "usage"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "installation", "électricité", "gaz", "sécurité"]
+                }
+            }
+        },
+        "Immeuble de bureau": {
+            "documents": {
+                "Plans de l'immeuble": {
+                    "keywords": ["plans", "architecture", "bureau", "surface", "agencement"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "occupation", "entreprise"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "occupation"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "maintenance", "aménagement"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "usage", "bureau", "activité", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "sécurité", "incendie", "électricité", "ascenseur"]
+                },
+                "Etudes techniques": {
+                    "keywords": ["étude", "accessibilité", "performance", "énergétique", "technique"]
+                }
+            }
+        },
+        "Bâtiment commercial d'activité": {
+            "documents": {
+                "Plans du bâtiment": {
+                    "keywords": ["plans", "architecture", "commercial", "surface", "activité"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "occupation", "entreprise"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "commercial"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "maintenance", "aménagement"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "usage", "commercial", "activité", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "sécurité", "incendie", "électricité", "installation"]
+                },
+                "Servitudes actives et passives": {
+                    "keywords": ["servitude", "passage", "droit", "usage", "accès"]
+                }
+            }
+        },
+        "Immeuble mixte": {
+            "documents": {
+                "Plans de l'immeuble": {
+                    "keywords": ["plans", "architecture", "mixte", "surface", "usage"]
+                },
+                "Règlement de copropriété": {
+                    "keywords": ["règlement", "copropriété", "division", "lots", "parties communes"]
+                },
+                "Liste des lots": {
+                    "keywords": ["lots", "affectation", "copropriété", "usage", "destination"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "habitation", "occupation"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "mixte"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "maintenance", "aménagement"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "usage", "mixte", "activité", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "sécurité", "installation", "électricité", "gaz"]
+                }
+            }
+        },
+        "Appartement": {
+            "documents": {
+                "Plans de l'appartement": {
+                    "keywords": ["plans", "architecture", "appartement", "surface", "pièces"]
+                },
+                "Règlement de copropriété": {
+                    "keywords": ["règlement", "copropriété", "division", "lot", "parties communes"]
+                },
+                "Charges de copropriété": {
+                    "keywords": ["charges", "copropriété", "budget", "quote-part", "provision"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "plomb", "électricité", "gaz"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "entretien", "amélioration"]
+                },
+                "Procès-verbaux des assemblées": {
+                    "keywords": ["pv", "assemblée", "générale", "copropriété", "décision"]
+                },
+                "Bail en cours": {
+                    "keywords": ["bail", "location", "loyer", "locataire", "occupation"]
+                }
+            }
+        },
+        "Hôtel Particulier": {
+            "documents": {
+                "Statuts de la société": {
+                    "keywords": ["statuts", "société", "propriétaire", "juridique"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "plomb", "termites", "technique"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "restauration", "entretien", "historique"]
+                },
+                "Titre de propriété": {
+                    "keywords": ["titre", "propriété", "acte", "acquisition", "origine"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "certificat", "règlement", "usage", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "installation", "sécurité", "normes", "technique"]
+                },
+                "Charges de copropriété": {
+                    "keywords": ["charges", "copropriété", "quote-part", "budget", "provision"]
+                },
+                "Procès-verbaux des assemblées": {
+                    "keywords": ["pv", "assemblée", "générale", "copropriété", "décision"]
+                },
+                "Bail en cours": {
+                    "keywords": ["bail", "location", "loyer", "locataire", "occupation"]
+                }
+            }
+        },
+        "Villa": {
+            "documents": {
+                "Plans de la villa": {
+                    "keywords": ["plans", "architecture", "villa", "surface", "construction"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "entretien", "amélioration", "maintenance"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "plomb", "technique", "énergétique"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "certificat", "règlement", "construction", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "installation", "électricité", "gaz", "sécurité"]
+                },
+                "Servitudes actives et passives": {
+                    "keywords": ["servitude", "passage", "droit", "usage", "accès"]
+                },
+                "Charges de copropriété": {
+                    "keywords": ["charges", "copropriété", "quote-part", "budget", "provision"]
+                },
+                "Procès-verbaux des assemblées": {
+                    "keywords": ["pv", "assemblée", "générale", "copropriété", "décision"]
+                },
+                "Bail en cours": {
+                    "keywords": ["bail", "location", "loyer", "locataire", "occupation"]
+                }
+            }
+        },
+        "Local commercial": {
+            "documents": {
+                "Plans du local": {
+                    "keywords": ["plans", "architecture", "local", "surface", "commercial"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "occupation", "entreprise"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "commercial"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "aménagement", "entretien"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "usage", "commercial", "activité", "permis"]
+                }
+            }
+        },
+        "Immeuble commercial": {
+            "documents": {
+                "Plans de l'immeuble": {
+                    "keywords": ["plans", "architecture", "commercial", "surface", "bâtiment"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "occupation", "entreprise"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "commercial"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "maintenance", "aménagement"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "usage", "commercial", "activité", "permis"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "sécurité", "incendie", "électricité", "installation"]
+                },
+                "Baux en cours": {
+                    "keywords": ["bail", "commercial", "location", "loyer", "occupation"]
+                }
+            }
+        },
+        "Monument historique": {
+            "documents": {
+                "Plans détaillés du bâtiment": {
+                    "keywords": ["plans", "architecture", "historique", "monument", "détail"]
+                },
+                "Certificat de classement": {
+                    "keywords": ["classement", "monument", "historique", "inscription", "patrimoine"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "plomb", "technique"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "restauration", "conservation", "rénovation", "historique"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "protection", "patrimoine", "règlement", "permis"]
+                },
+                "Autorisation administrative": {
+                    "keywords": ["autorisation", "administrative", "travaux", "aménagement", "modification"]
+                },
+                "Études techniques": {
+                    "keywords": ["étude", "structure", "performance", "énergétique", "technique"]
+                },
+                "Baux en cours": {
+                    "keywords": ["bail", "location", "occupation", "usage", "exploitation"]
+                }
+            }
+        },
+        "Retail Park": {
+            "documents": {
+                "Plans du Retail Park": {
+                    "keywords": ["plans", "retail", "commercial", "surface", "aménagement"]
+                },
+                "Liste des locataires": {
+                    "keywords": ["locataires", "bail", "commercial", "enseigne", "occupation"]
+                },
+                "Revenus locatifs détaillés": {
+                    "keywords": ["revenus", "loyers", "charges", "rentabilité", "commercial"]
+                },
+                "Études de marché": {
+                    "keywords": ["étude", "marché", "commercial", "zone", "chalandise"]
+                },
+                "Diagnostics techniques obligatoires": {
+                    "keywords": ["diagnostic", "dpe", "amiante", "technique", "obligatoire"]
+                },
+                "Historique des travaux": {
+                    "keywords": ["travaux", "rénovation", "aménagement", "maintenance"]
+                },
+                "Certificat d'urbanisme": {
+                    "keywords": ["urbanisme", "commercial", "retail", "permis", "activité"]
+                },
+                "Certificat de conformité": {
+                    "keywords": ["conformité", "sécurité", "incendie", "électricité", "installation"]
+                },
+                "Servitudes actives et passives": {
+                    "keywords": ["servitude", "passage", "accès", "droit", "usage"]
+                },
+                "Baux en cours": {
+                    "keywords": ["bail", "commercial", "location", "occupation", "enseigne"]
+                },
+                "Data room": {
+                    "keywords": ["data", "room", "documentation", "information", "technique"]
+                }
+            }
+        }
+    }
+} 
