@@ -7,6 +7,8 @@ from typing import List, Dict, Set
 import json
 from datetime import datetime
 import platform
+import tempfile
+import io
 
 class DocumentValidator:
     def __init__(self, config):
@@ -27,12 +29,24 @@ class DocumentValidator:
                 image = Image.open(uploaded_file)
                 text = pytesseract.image_to_string(image, lang='fra')
             elif file_extension == '.pdf':
-                pages = convert_from_path(uploaded_file)
-                text = ""
-                for page in pages:
-                    text += pytesseract.image_to_string(page, lang='fra')
+                # Create a temporary file to save the uploaded PDF
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
+                    tmp_file.write(uploaded_file.getvalue())
+                    pdf_path = tmp_file.name
+                
+                try:
+                    # Convert PDF to images
+                    pages = convert_from_path(pdf_path)
+                    text = ""
+                    for page in pages:
+                        text += pytesseract.image_to_string(page, lang='fra')
+                finally:
+                    # Clean up the temporary file
+                    os.unlink(pdf_path)
+                
             elif file_extension == '.docx':
-                text = docx2txt.process(uploaded_file)
+                # For docx files, we need to read the bytes
+                text = docx2txt.process(io.BytesIO(uploaded_file.getvalue()))
             else:
                 raise ValueError(f"Unsupported file format: {file_extension}")
                 
