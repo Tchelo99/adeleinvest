@@ -106,6 +106,8 @@ class DocumentValidator:
             
             # Check for keywords with more flexible matching
             found_keywords = []
+            missing_keywords = []
+            
             for keyword in keywords:
                 # Convert both to lower case
                 keyword_lower = keyword.lower()
@@ -119,9 +121,11 @@ class DocumentValidator:
                     keyword_lower.replace(' ', '') in extracted_text.replace(' ', '') or
                     keyword_lower.replace('-', '') in extracted_text.replace('-', '')):
                     found_keywords.append(keyword)
+                else:
+                    missing_keywords.append(keyword)
             
-            # Document is valid if at least one keyword is found
-            is_valid = len(found_keywords) > 0
+            # Document is valid only if ALL keywords are found
+            is_valid = len(found_keywords) == len(keywords)
             
             # Create result
             result = {
@@ -131,6 +135,7 @@ class DocumentValidator:
                 "document_type": document_type,
                 "is_valid": is_valid,
                 "found_keywords": found_keywords,
+                "missing_keywords": missing_keywords,  # Added to show which keywords were not found
                 "extracted_text": extracted_text  # Optional: for debugging
             }
             
