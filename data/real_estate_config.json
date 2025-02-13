@@ -58,6 +58,12 @@
                 },
                 "Autorisations administratives": {
                     "keywords": ["autorisation", "administrative", "licence iv", "terrasse"]
+                },
+                "Statuts de la société": {
+                    "keywords": ["statuts", "régime juridique"]
+                },
+                "Comptes annuels": {
+                    "keywords": ["bilans", "comptabilité", "résultats ﬁnanciers"]
                 }
             }
         },
