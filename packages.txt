@@ -3,4 +3,3 @@ tesseract-ocr-fra
 tesseract-ocr-eng
 poppler-utils
 ghostscript 
-openpyxl
