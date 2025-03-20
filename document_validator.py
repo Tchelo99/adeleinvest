@@ -9,6 +9,7 @@ from datetime import datetime
 import platform
 import tempfile
 import io
+import pandas as pd
 
 class DocumentValidator:
     def __init__(self, config):
@@ -73,6 +74,41 @@ class DocumentValidator:
                 docx_bytes = uploaded_file.read()
                 uploaded_file.seek(0)
                 text = docx2txt.process(io.BytesIO(docx_bytes))
+                
+            elif file_extension in ['.xlsx', '.xls']:
+                excel_bytes = uploaded_file.read()
+                uploaded_file.seek(0)
+                
+                # Read all sheets from Excel file
+                df = pd.read_excel(io.BytesIO(excel_bytes), header=None)
+                
+                # Convert DataFrame to string representation
+                text = ""
+                
+                # Track the last non-empty row to detect table boundaries
+                last_non_empty_row = None
+                current_table_text = []
+                
+                # Iterate through rows
+                for idx, row in df.iterrows():
+                    # Convert row to string values and remove 'nan'
+                    row_values = [str(val).strip() for val in row if str(val).lower() != 'nan']
+                    
+                    if row_values:  # If row is not empty
+                        # Join row values with spaces
+                        row_text = " ".join(row_values)
+                        current_table_text.append(row_text)
+                        last_non_empty_row = idx
+                    elif last_non_empty_row is not None:
+                        # Empty row after content - possible table boundary
+                        # Add the accumulated table text with a separator
+                        text += " | ".join(current_table_text) + "\n\n"
+                        current_table_text = []
+                        last_non_empty_row = None
+                
+                # Add any remaining table text
+                if current_table_text:
+                    text += " | ".join(current_table_text)
                 
             else:
                 raise ValueError(f"Unsupported file format: {file_extension}")
