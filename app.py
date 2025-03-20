@@ -19,6 +19,10 @@ def main():
     # Initialize validator with config
     validator = DocumentValidator(config)
     
+    # Initialize session state for document types
+    if 'previous_real_estate_type' not in st.session_state:
+        st.session_state.previous_real_estate_type = None
+    
     # Sidebar for history
     st.sidebar.title("Validation History")
     if st.sidebar.button("Show History"):
@@ -29,24 +33,33 @@ def main():
                 st.write(f"Document Type: {result['document_type']}")
                 st.write(f"Valid: {'✅' if result['is_valid'] else '❌'}")
     
-    # Main form
+    # Move selectboxes outside the form
+    # Real estate type selection
+    real_estate_type = st.selectbox(
+        "Select Real Estate Type",
+        options=config.get_real_estate_types(),
+        key="real_estate_type"
+    )
+    
+    # Update document types if real estate type changes
+    if real_estate_type != st.session_state.previous_real_estate_type:
+        st.session_state.previous_real_estate_type = real_estate_type
+        if 'document_type' in st.session_state:
+            del st.session_state.document_type
+    
+    # Document type selection (dependent on real estate type)
+    document_type = st.selectbox(
+        "Select Document Type",
+        options=config.get_documents_for_type(real_estate_type),
+        key="document_type"
+    )
+    
+    # Main form - now only contains file upload and submit button
     with st.form("validation_form"):
-        # Real estate type selection
-        real_estate_type = st.selectbox(
-            "Select Real Estate Type",
-            options=config.get_real_estate_types()
-        )
-        
-        # Document type selection (dependent on real estate type)
-        document_type = st.selectbox(
-            "Select Document Type",
-            options=config.get_documents_for_type(real_estate_type)
-        )
-        
         # File upload
         uploaded_file = st.file_uploader(
             "Upload Document",
-            type=['pdf', 'png', 'jpg', 'jpeg', 'docx']
+            type=['pdf', 'png', 'jpg', 'jpeg', 'docx', 'xlsx', 'xls']
         )
         
         # Submit button
@@ -76,20 +89,21 @@ def main():
                         st.write("Found Keywords:")
                         for keyword in result["found_keywords"]:
                             st.write(f"✅ {keyword}")
-                    else:
-                        st.write("❌ No matching keywords found")
+                    
+                    if result["missing_keywords"]:
+                        st.write("\nMissing Keywords:")
+                        for keyword in result["missing_keywords"]:
+                            st.write(f"❌ {keyword}")
 
-    # Add configuration management section
+    # Configuration management section remains unchanged
     if st.sidebar.checkbox("Show Configuration Management"):
         st.sidebar.subheader("Configuration Management")
         
-        # Add new real estate type
         new_type = st.sidebar.text_input("New Real Estate Type")
         if st.sidebar.button("Add Real Estate Type") and new_type:
             config.add_real_estate_type(new_type)
             st.sidebar.success(f"Added {new_type}")
             
-        # Add new document type
         selected_type = st.sidebar.selectbox("Select Real Estate Type for New Document", 
                                            config.get_real_estate_types())
         new_doc = st.sidebar.text_input("New Document Name")
