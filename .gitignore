@@ -1,3 +1,6 @@
 
 # Virtual Environment
 ocr/
+
+# History file
+validation_history.json
